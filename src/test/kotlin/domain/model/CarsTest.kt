@@ -4,15 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class CarsTest {
-
-    @Test
-    fun findWinner() {
-        val winner = "a"
-        val cars = Cars(listOf(Car(winner).move(Power(4)), Car("b")))
-
-        assertThat(cars.findWinner().names).isEqualTo(listOf(winner))
-    }
-
     @Test
     fun tryMove() {
         val alwaysMoveStrategy = ManualPowerGenerateStrategy(Power(4))

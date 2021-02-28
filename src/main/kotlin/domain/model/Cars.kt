@@ -7,11 +7,6 @@ class Cars(private val cars: List<Car>) {
     fun tryMove(powerGenerateStrategy: PowerGenerateStrategy) =
         Cars(cars.map { it.move(powerGenerateStrategy.generate()) })
 
-    fun findWinner(): Cars {
-        val winnerPosition = cars.maxOf { it.position.position }
-        return Cars(cars.filter { it.position.position == winnerPosition })
-    }
-
     companion object {
         private const val DELIMITER = ","
 

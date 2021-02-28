@@ -1,14 +1,24 @@
 package view
 
-import domain.model.Cars
+import domain.model.GameResult
 
-class OutputView {
-    fun printResult() = println("실행 결과")
+object OutputView {
+    fun printResult(result: GameResult) {
+        println("실행 결과")
 
-    fun printCarState(cars: Cars) {
-        cars.states.forEach { println("${it.first} : ${"-".repeat(it.second.position)}") }
-        println()
+        result.all.forEachIndexed { index, record ->
+            run {
+                val carCount = result.all
+                    .map { it.first }
+                    .distinct()
+                    .count()
+
+                if (index % carCount == 0) {
+                    println()
+                }
+                println("${record.first} : ${"-".repeat(record.second.position)}")
+            }
+        }
+        println("${result.findWinnerName()}가 최종 우승했습니다.")
     }
-
-    fun printWinner(winners: Cars) = println("${winners.names.joinToString(separator = ",")}가 최종 우승했습니다.")
 }
